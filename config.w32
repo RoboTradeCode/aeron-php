@@ -1,0 +1,7 @@
+ARG_ENABLE('aeron', 'aeron support', 'no');
+
+if (PHP_AERON != 'no') {
+	AC_DEFINE('HAVE_AERON', 1, 'aeron support enabled');
+
+	EXTENSION('aeron', 'aeron.c', null, '/DZEND_ENABLE_STATIC_TSRMLS_CACHE=1');
+}

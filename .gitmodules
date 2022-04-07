@@ -1,0 +1,6 @@
+[submodule "libs/aeron"]
+	path = libs/aeron
+	url = https://github.com/real-logic/aeron.git
+[submodule "libs/php-src"]
+	path = libs/php-src
+	url = https://github.com/php/php-src.git
