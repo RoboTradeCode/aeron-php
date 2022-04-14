@@ -18,7 +18,7 @@ $publisher->offer('Hello, World!');
 Клонируйте код репозитория:
 
 ```shell
-git clone --recurse-submodules https://gitlab.com/transport_layer/aeron/aeron_php8.git
+git clone --recurse-submodules https://github.com/RoboTradeCode/aeron-php.git
 ```
 
 > Обратите внимание на параметр `--recurse-submodules`. Он нужен, чтобы рекурсивно установить все зависимости
