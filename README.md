@@ -23,13 +23,16 @@ git clone --recurse-submodules https://github.com/RoboTradeCode/aeron-php.git
 git clone --recurse-submodules git@github.com:RoboTradeCode/aeron-php.git
 ```
 
+
+
 > Обратите внимание на параметр `--recurse-submodules`. Он нужен, чтобы рекурсивно установить все зависимости
 > репозитория, описанные в файле [.gitmodules](.gitmodules)
-
-Сборка осуществляется с использованием утилиты [CMake](https://ru.wikipedia.org/wiki/CMake). Для её упрощения вы можете
+> 
+Далее, необходимо перейти в склонированный проект и осуществить его сборку. Сборка осуществляется с использованием утилиты [CMake](https://ru.wikipedia.org/wiki/CMake). Для её упрощения вы можете
 воспользоваться скриптом [build.sh](build.sh). После его исполнения собранный код будет находиться в директории
 build/Debug:
 
 ```shell
+cd /home/user/cpp/other/aeron-php
 ./build.sh
 ```
