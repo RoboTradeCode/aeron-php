@@ -28,6 +28,14 @@ jobs:
       with:
         php-version: ${{ matrix.php-versions }}
         tools: phpize
+    - name: Install Aeron
+      run: |
+        git clone --branch 1.38.2 --depth 1 https://github.com/real-logic/aeron.git
+        mkdir --parents aeron/cppbuild/Debug
+        cd aeron/cppbuild/Debug
+        cmake -DCMAKE_BUILD_TYPE=Debug ../..
+        cmake --build . --clean-first --parallel 2
+        sudo cmake --install .
     - name: Compile extension
       run: |
         phpize
