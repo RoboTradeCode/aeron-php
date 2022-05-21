@@ -20,7 +20,7 @@ jobs:
     strategy:
       matrix:
         operating-system: ['ubuntu-latest']
-        php-versions: ['7.4', '8.0', '8.1', '8.2']
+        php-versions: ['8.0', '8.1', '8.2']
     steps:
     - uses: actions/checkout@v3
     - name: Setup PHP
@@ -42,4 +42,4 @@ jobs:
         ./configure
         make
     - name: Run tests
-      run: make test
+      run: TEST_PHP_ARGS="-q" make test
