@@ -6,45 +6,60 @@
 [![PHP](https://img.shields.io/badge/php-%5E8.0-blue)](https://www.php.net/downloads)
 [![Linux](https://img.shields.io/badge/platform-linux-lightgrey)](https://ru.wikipedia.org/wiki/Linux)
 
-Расширение для PHP, позволяющее использовать протокол [Aeron](https://github.com/real-logic/aeron). Добавляет в код
-классы `AeronPublisher` и `AeronSubscriber`:
+Неофициальное расширение для PHP, позволяющее использовать протокол [Aeron](https://github.com/real-logic/aeron).
 
-```php
-function handler(string $message) {}
-$subscriber = new AeronSubscriber('handler', 'aeron:ipc');
+## Установка
 
-$publisher = new AeronPublisher('aeron:ipc');
-$publisher->offer('Hello, World!');
-```
+### Предварительные требования
 
-*Описания классов и примеры использования смотрите в папке [examples](examples).*
+Перед установкой и использованием данного расширения, у вас должен быть установлен Aeron. Вы можете воспользоваться
+[статьёй в Wiki](https://github.com/RoboTradeCode/aeron-python/wiki/Установка-Aeron) для его установки.
 
-## Установка и сборка
-
-Установите php версии 8 для вашего дистрибутива Linux, и проверьте версию:
-
-```
-php -version
-```
-
-Клонируйте код репозитория:
-
-```bash
-git clone --recurse-submodules https://github.com/RoboTradeCode/aeron-php.git
-# или так 
-git clone --recurse-submodules git@github.com:RoboTradeCode/aeron-php.git
-```
-
-
-
-> Обратите внимание на параметр `--recurse-submodules`. Он нужен, чтобы рекурсивно установить все зависимости
-> репозитория, описанные в файле [.gitmodules](.gitmodules)
-> 
-Далее, необходимо перейти в склонированный проект и осуществить его сборку. Сборка осуществляется с использованием утилиты [CMake](https://ru.wikipedia.org/wiki/CMake). Для её упрощения вы можете
-воспользоваться скриптом [build.sh](build.sh). После его исполнения собранный код будет находиться в директории
-build/Debug:
+### Сборка и установка расширения
 
 ```shell
-cd /home/user/cpp/other/aeron-php
-./build.sh
+phpize
+./configure
+make
+sudo make install
 ```
+
+> Дополнительно добавьте `extension=aeron.so` в ваш файл `php.ini`
+
+## Использование
+
+### Отправка сообщений
+
+```php
+use Aeron\Publisher;
+
+$publisher = new Publisher(
+    channel: "aeron:udp?endpoint=localhost:20121", // string
+    stream_id: 1001,                               // int
+);
+
+$result = $publisher->offer(message: "Hello, World!");
+$publisher->close();
+```
+
+### Получение сообщений
+
+```php
+use Aeron\Subscriber;
+
+function handler(string $message): void
+{
+    echo "<<$message>>", PHP_EOL;
+}
+
+$subscriber = new Subscriber(
+    handler: 'handler',                            // callable
+    channel: 'aeron:udp?endpoint=localhost:20121', // string
+    stream_id: 1001,                               // int
+);
+
+$fragments_read = $subscriber->poll();
+$subscriber->close();
+```
+
+> Убедитесь, что у вас запущен медиа-драйвер Aeron перед использованием классов расширения
