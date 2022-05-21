@@ -126,28 +126,28 @@ PHP_METHOD(Aeron_Publisher, offer)
     } else if (AERON_PUBLICATION_BACK_PRESSURED == result) {
         zend_throw_exception(
             aeron_ce_publication_back_pressured_exception,
-            "Offer failed because publisher is not connected to a subscriber",
+            "Offer failed due to back pressure",
             0
         );
         RETURN_THROWS();
     } else if (AERON_PUBLICATION_ADMIN_ACTION == result) {
         zend_throw_exception(
             aeron_ce_publication_admin_action_exception,
-            "Offer failed because publisher is not connected to a subscriber",
+            "Offer failed because of an administration action in the system",
             0
         );
         RETURN_THROWS();
     } else if (AERON_PUBLICATION_CLOSED == result) {
         zend_throw_exception(
             aeron_ce_publication_closed_exception,
-            "Offer failed because publisher is not connected to a subscriber",
+            "Offer failed because publication is closed",
             0
         );
         RETURN_THROWS();
     } else if (AERON_PUBLICATION_MAX_POSITION_EXCEEDED == result) {
         zend_throw_exception(
             aeron_ce_publication_max_position_exceeded_exception,
-            "Offer failed because publisher is not connected to a subscriber",
+            "Offer failed due to reaching the maximum position",
             0
         );
         RETURN_THROWS();
