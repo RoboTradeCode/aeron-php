@@ -1,17 +1,15 @@
-/* aeron extension for PHP */
+/* aeron extension for PHP (c) 2022 nomnoms12 */
 
 #ifndef PHP_AERON_H
 # define PHP_AERON_H
 
-#include "aeronc.h"
-
 extern zend_module_entry aeron_module_entry;
 # define phpext_aeron_ptr &aeron_module_entry
 
-# define PHP_AERON_VERSION "0.1.0"
+# define PHP_AERON_VERSION "0.2.0"
 
 # if defined(ZTS) && defined(COMPILE_DL_AERON)
 ZEND_TSRMLS_CACHE_EXTERN()
 # endif
 
-#endif  /* PHP_AERON_H */
+#endif	/* PHP_AERON_H */

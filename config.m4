@@ -34,8 +34,8 @@ if test "$PHP_AERON" != "no"; then
 
   dnl Remove this code block if the library supports pkg-config.
   dnl --with-aeron -> check with-path
-  SEARCH_PATH="/usr/lib" # you might want to change this
-  SEARCH_FOR="libaeron.so" # you most likely want to change this
+  SEARCH_PATH="/usr/local /usr"     # you might want to change this
+  SEARCH_FOR="/include/aeron/aeronc.h"  # you most likely want to change this
   if test -r $PHP_AERON/$SEARCH_FOR; then # path given as parameter
     AERON_DIR=$PHP_AERON
   else # search default path list
@@ -55,7 +55,7 @@ if test "$PHP_AERON" != "no"; then
 
   dnl Remove this code block if the library supports pkg-config.
   dnl --with-aeron -> add include path
-  PHP_ADD_INCLUDE(libs/aeron/aeron-client/src/main/c)
+  PHP_ADD_INCLUDE($AERON_DIR/include)
 
   dnl Remove this code block if the library supports pkg-config.
   dnl --with-aeron -> check for lib and symbol presence
@@ -88,7 +88,7 @@ if test "$PHP_AERON" != "no"; then
   PHP_SUBST(AERON_SHARED_LIBADD)
 
   dnl In case of no dependencies
-  dnl AC_DEFINE(HAVE_AERON, 1, [ Have aeron support ])
+  AC_DEFINE(HAVE_AERON, 1, [ Have aeron support ])
 
   PHP_NEW_EXTENSION(aeron, aeron.c, $ext_shared)
 fi
