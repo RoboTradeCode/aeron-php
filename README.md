@@ -34,11 +34,11 @@ sudo make install
 use Aeron\Publisher;
 
 $publisher = new Publisher(
-    channel: "aeron:udp?endpoint=localhost:20121", // string
+    channel: 'aeron:udp?endpoint=localhost:20121', // string
     stream_id: 1001,                               // int
 );
 
-$result = $publisher->offer(message: "Hello, World!");
+$result = $publisher->offer(message: 'Hello, World!');
 $publisher->close();
 ```
 
