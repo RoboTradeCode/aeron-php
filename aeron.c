@@ -223,6 +223,8 @@ void poll_handler(void *clientd, const uint8_t *buffer, size_t length, __attribu
     subscriber->handler.param_count = 1;
     subscriber->handler.params = args;
     zend_call_function(&subscriber->handler, &subscriber->handler_cache);
+
+    zval_ptr_dtor(&args[0]);
 }
 
 PHP_METHOD(Aeron_Subscriber, __construct)
