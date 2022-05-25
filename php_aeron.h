@@ -6,7 +6,7 @@
 extern zend_module_entry aeron_module_entry;
 # define phpext_aeron_ptr &aeron_module_entry
 
-# define PHP_AERON_VERSION "0.2.1"
+# define PHP_AERON_VERSION "0.2.2"
 
 # if defined(ZTS) && defined(COMPILE_DL_AERON)
 ZEND_TSRMLS_CACHE_EXTERN()
