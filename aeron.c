@@ -426,7 +426,9 @@ PHP_MINIT_FUNCTION(aeron)
 PHP_MINFO_FUNCTION(aeron)
 {
     php_info_print_table_start();
-    php_info_print_table_header(2, "aeron support", "enabled");
+    php_info_print_table_header(2, "Aeron support", "enabled");
+    php_info_print_table_row(2, "Extension version", PHP_AERON_VERSION);
+    php_info_print_table_row(2, "Library version", aeron_version_full());
     php_info_print_table_end();
 }
 /* }}} */
