@@ -80,6 +80,14 @@ make
 sudo make install
 ```
 
+In the directory `/etc/php/8.0/mods-available` create a file `aeron.ini` with the content `extension=aeron.so`
+Run command `sudo phpenmod -v8.0 aeron`
+
+Check aeron version:
+```shell
+php --ri aeron
+```
+
 If the installation is successful, the `aeron.so` file will be created and placed in
 PHP [module directory](https://www.php.net/manual/ru/ini.core.php#ini.extension-dir). You will need to add
 line `extension=aeron.so` in `php.ini` before using this module.
@@ -89,9 +97,9 @@ often contain a `phpize` command with the appropriate header files for building 
 
 For more information, use the **phpize --help** command.
 
-## Использование
+# Usage
 
-### Отправка сообщений
+### Send Message
 
 ```php
 <?php
@@ -107,8 +115,7 @@ $result = $publisher->offer(message: 'Hello, World!');
 $publisher->close();
 ```
 
-### Получение сообщений
-
+### Get Message
 ```php
 <?php
 
@@ -128,7 +135,3 @@ $subscriber = new Subscriber(
 $fragments_read = $subscriber->poll();
 $subscriber->close();
 ```
-
-## Руководство пользователя
-
-https://github.com/RoboTradeCode/aeron-php/wiki/Руководство-пользователя
